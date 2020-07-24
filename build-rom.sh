@@ -52,17 +52,19 @@ else
 	git clone https://github.com/420rom/treble_manifest .repo/local_manifests -b 420rom-10
 fi
 
-if [ -z "$local_patches" ];then
-    if [ -d patches ];then
-        ( cd patches; git fetch; git reset --hard; git checkout origin/$localManifestBranch)
-    else
-        git clone https://github.com/phhusson/treble_patches patches -b $localManifestBranch
-    fi
-else
-    rm -Rf patches
-    mkdir patches
-    unzip  "$local_patches" -d patches
+file="patches.zip"
+if [ -f $file ] ; then
+    rm $file
 fi
+
+folder="patches"
+if [ -f $folder ] ; then
+    rm -rf $folder
+fi
+
+mkdir patches
+wget https://github.com/phhusson/treble_experimentations/releases/download/v221/patches.zip
+unzip  patches.zip -d patches
 
 #We don't want to replace from AOSP since we'll be applying patches by hand
 rm -f .repo/local_manifests/replace.xml
