@@ -1,10 +1,12 @@
-# Community
+# 420rom AOSP/Pixel based rom
 
-* IRC: irc://irc.freenode.net/#phh-treble
-* WebIRC: http://webchat.freenode.net/?channels=%23phh-treble&uio=d4
-* Matrix: #freenode_#phh-treble:matrix.org
-* Telegram https://t.me/phhtreble
-* xda-developers threads: https://forum.xda-developers.com/search.php?do=finduser&u=1915408&starteronly=1
+Getting Started
+
+To get started with Android/420rom, you'll need to get familiar with Git and Repo.
+
+To initialize your local repository using the 420rom trees, use a command like this:
+
+repo init -u git://github.com/420rom/android.git -b 420rom-10
 
 # How to build
 
@@ -13,16 +15,16 @@
 
 For example:
 
-    git clone https://github.com/phhusson/treble_experimentations
-    mkdir Lineage; cd Lineage
-    bash ../treble_experimentations/build-rom.sh android-8.1 lineage
+    git clone https://github.com/420rom/treble_experimentations
+    mkdir 420rom; cd 420rom
+    bash ../treble_experimentations/build-rom.sh android-10.0 420rom
 
-## More flexible build script
+# More flexible build script
 
 (this has been tested much less)
 
-  bash ../treble_experimentations/build-dakkar.sh rr \
-    arm-aonly-gapps-su \
+  bash ../treble_experimentations/build-dakkar.sh 420rom \
+    arm64-aonly-gapps-nosu \
     arm64-ab-go-nosu
 
 The script should provide a help message if you pass something it
@@ -41,17 +43,6 @@ clone this repository, then:
         -v $(pwd)/../treble_output:/treble_output \
         -w /treble_output \
         treble \
-        /bin/bash /treble/build-dakkar.sh rr \
-        arm-aonly-gapps-su \
+        /bin/bash /treble/build-dakkar.sh 420rom \
+        arm64-aonly-gapps-nosu \
         arm64-ab-go-nosu
-
-# Conventions for commit messages:
-
-* `[UGLY]` Please make this patch disappear as soon as possible
-* `[master]` tag means that the commit should be dropped in a future
-  rebase
-* `[device]` tag means this change is device-specific workaround
-* `::device name::` will try to describe which devices are concerned
-  by this change
-* `[userfriendly]` This commit is NOT used for hardware support, but
-  to make the rom more user friendly

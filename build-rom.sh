@@ -6,7 +6,7 @@ mkdir -p release/$rom_fp/
 set -e
 
 if [ "$#" -le 1 ];then
-	echo "Usage: $0 <android-8.1> <carbon|lineage|rr> '# of jobs'"
+	echo "Usage: $0 <android-10.0> <carbon|lineage|rr|420rom> '# of jobs'"
 	exit 0
 fi
 localManifestBranch=$1
@@ -42,12 +42,14 @@ elif [ "$rom" == "lineage16" ];then
 	repo init -u https://github.com/LineageOS/android.git -b lineage-16.0
 elif [ "$rom" == "rr" ];then
 	repo init -u https://github.com/ResurrectionRemix/platform_manifest.git -b pie
+elif [ "$rom" == "420rom" ];then
+	repo init -u https://github.com/420rom/android.git -b 420rom-10 --depth=1
 fi
 
 if [ -d .repo/local_manifests ] ;then
-	( cd .repo/local_manifests; git fetch; git reset --hard; git checkout origin/$localManifestBranch)
+	( cd .repo/local_manifests; git fetch; git checkout origin/420rom-10)
 else
-	git clone https://github.com/phhusson/treble_manifest .repo/local_manifests -b $localManifestBranch
+	git clone https://github.com/420rom/treble_manifest .repo/local_manifests -b 420rom-10
 fi
 
 if [ -z "$local_patches" ];then
@@ -71,12 +73,6 @@ rm -f device/*/sepolicy/common/private/genfs_contexts
 
 sed -i -e 's/BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1610612736/BOARD_SYSTEMIMAGE_PARTITION_SIZE := 2147483648/g' device/phh/treble/phhgsi_arm64_a/BoardConfig.mk
 
-if [ -f vendor/rr/prebuilt/common/Android.mk ];then
-    sed -i \
-        -e 's/LOCAL_MODULE := Wallpapers/LOCAL_MODULE := WallpapersRR/g' \
-        vendor/rr/prebuilt/common/Android.mk
-fi
-
 bash "$(dirname "$0")/apply-patches.sh" patches
 
 . build/envsetup.sh
@@ -91,8 +87,12 @@ buildVariant() {
 
 repo manifest -r > release/$rom_fp/manifest.xml
 buildVariant treble_arm64_avN-userdebug arm64-aonly-vanilla-nosu
+buildVariant treble_arm64_avS-userdebug arm64-aonly-vanilla-su
 buildVariant treble_arm64_agS-userdebug arm64-aonly-gapps-su
+buildVariant treble_arm64_agN-userdebug arm64-aonly-gapps-nosu
 buildVariant treble_arm64_bvN-userdebug arm64-ab-vanilla-nosu
+buildVariant treble_arm64_bvS-userdebug arm64-ab-vanilla-su
+buildVariant treble_arm64_bgN-userdebug arm64-ab-gapps-nosu
 buildVariant treble_arm64_bgS-userdebug arm64-ab-gapps-su
 buildVariant treble_arm_avN-userdebug arm-aonly-vanilla-nosu
 buildVariant treble_arm_aoS-userdebug arm-aonly-gapps

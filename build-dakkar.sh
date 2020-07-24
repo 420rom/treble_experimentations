@@ -37,6 +37,7 @@ Options:
 
 ROM types:
 
+  420rom
   aex-pie
   aicp-oreo
   aokp-oreo
@@ -54,9 +55,11 @@ ROM types:
   komodo-pie
   lineage151
   lineage160
+  lineage171
   mokee-oreo
   pixel81
   pixel90
+  pixel100
   potato-pie
   rebellion-pie
   rr-oreo
@@ -92,6 +95,14 @@ EOF
 function get_rom_type() {
     while [[ $# -gt 0 ]]; do
         case "$1" in
+            420rom)
+                mainrepo="https://github.com/420rom/android.git"
+                mainbranch="420rom-10"
+                localManifestBranch="android-10.0"
+                treble_generate="420rom"
+                extra_make_options="WITHOUT_CHECK_API=true"
+                jack_enabled="false"
+                ;;
             aosp80)
                 mainrepo="https://android.googlesource.com/platform/manifest.git"
                 mainbranch="android-vts-8.0_r4"
@@ -164,6 +175,14 @@ function get_rom_type() {
                 extra_make_options="WITHOUT_CHECK_API=true"
                 jack_enabled="false"
                 ;;
+            lineage171)
+                mainrepo="https://github.com/LineageOS/android.git"
+                mainbranch="lineage-17.1"
+                localManifestBranch="android-10.0"
+                treble_generate="lineage"
+                extra_make_options="WITHOUT_CHECK_API=true"
+                jack_enabled="false"
+                ;;
             rr-oreo)
                 mainrepo="https://github.com/ResurrectionRemix/platform_manifest.git"
                 mainbranch="oreo"
@@ -184,6 +203,14 @@ function get_rom_type() {
                 mainrepo="https://github.com/PixelExperience/manifest.git"
                 mainbranch="pie"
                 localManifestBranch="android-9.0"
+                treble_generate="pixel"
+                extra_make_options="WITHOUT_CHECK_API=true"
+                jack_enabled="false"
+                ;;
+            pixel100)
+                mainrepo="https://github.com/PixelExperience/manifest.git"
+                mainbranch="ten"
+                localManifestBranch="android-10.0"
                 treble_generate="pixel"
                 extra_make_options="WITHOUT_CHECK_API=true"
                 jack_enabled="false"
