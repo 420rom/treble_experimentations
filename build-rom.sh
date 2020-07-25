@@ -6,7 +6,7 @@ mkdir -p release/$rom_fp/
 set -e
 
 if [ "$#" -le 1 ];then
-	echo "Usage: $0 <android-10.0> <carbon|lineage|rr|420rom> '# of jobs'"
+	echo "Usage: $0 <android-10.0> <lineage|420rom> '# of jobs'"
 	exit 0
 fi
 localManifestBranch=$1
@@ -34,14 +34,8 @@ fi
 
 #We don't want to replace from AOSP since we'll be applying patches by hand
 rm -f .repo/local_manifests/replace.xml
-if [ "$rom" == "carbon" ];then
-	repo init -u https://github.com/CarbonROM/android -b cr-6.1
-elif [ "$rom" == "lineage15" ];then
-	repo init -u https://github.com/LineageOS/android.git -b lineage-15.1
-elif [ "$rom" == "lineage16" ];then
-	repo init -u https://github.com/LineageOS/android.git -b lineage-16.0
-elif [ "$rom" == "rr" ];then
-	repo init -u https://github.com/ResurrectionRemix/platform_manifest.git -b pie
+if [ "$rom" == "lineage171" ];then
+	repo init -u https://github.com/LineageOS/android.git -b lineage-17.1
 elif [ "$rom" == "420rom" ];then
 	repo init -u https://github.com/420rom/android.git -b 420rom-10 --depth=1
 fi

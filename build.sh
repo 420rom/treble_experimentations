@@ -10,19 +10,10 @@ if [ -z "$USER" ];then
 fi
 export LC_ALL=C
 
-manifest_url="https://android.googlesource.com/platform/manifest"
-aosp="android-8.1.0_r65"
-phh="android-8.1"
 
-if [ "$1" == "android-9.0" ];then
-    manifest_url="https://gitlab.com/aosp-security/manifest"
-    aosp="android-9.0.0_r53-r47"
-    phh="android-9.0"
-elif [ "$1" == "android-10.0" ];then
-    manifest_url="https://android.googlesource.com/platform/manifest"
-    aosp="android-10.0.0_r40"
-    phh="420rom-10"
-fi
+manifest_url="https://android.googlesource.com/platform/manifest"
+aosp="android-10.0.0_r40"
+phh="420rom-10"
 
 if [ "$release" == true ];then
     [ -z "$version" ] && exit 1
@@ -113,8 +104,8 @@ if [ "$release" == true ];then
         source venv/bin/activate
         pip install -r $originFolder/release/requirements.txt
 
-        name="AOSP 8.1"
-        [ "$1" == "android-9.0" ] && name="AOSP 9.0"
+        name="AOSP 10.0"
+        [ "$1" == "android-10.0" ] && name="AOSP 10.0"
         python $originFolder/release/push.py "$name" "$version" release/$rom_fp/
         rm -Rf venv
     )

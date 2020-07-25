@@ -38,34 +38,10 @@ Options:
 ROM types:
 
   420rom
-  aex-pie
-  aicp-oreo
-  aokp-oreo
-  aosmp-pie
-  aosp80
-  aosp81
-  aosp90
   aosp10
-  aquarios
-  carbon-oreo
-  crdroid-oreo
-  e-pie
-  e-oreo
-  havoc-pie
-  komodo-pie
-  lineage151
-  lineage160
   lineage171
-  mokee-oreo
-  pixel81
-  pixel90
   pixel100
-  potato-pie
-  rebellion-pie
-  rr-oreo
-  slim-oreo
-  graphene9
-  graphene10
+
 
 Variants are dash-joined combinations of (in order):
 * processor type
@@ -103,76 +79,12 @@ function get_rom_type() {
                 extra_make_options="WITHOUT_CHECK_API=true"
                 jack_enabled="false"
                 ;;
-            aosp80)
-                mainrepo="https://android.googlesource.com/platform/manifest.git"
-                mainbranch="android-vts-8.0_r4"
-                localManifestBranch="master"
-                treble_generate=""
-                extra_make_options=""
-                jack_enabled="true"
-                ;;
-            aosp81)
-                mainrepo="https://android.googlesource.com/platform/manifest.git"
-                mainbranch="android-8.1.0_r48"
-                localManifestBranch="android-8.1"
-                treble_generate=""
-                extra_make_options=""
-                jack_enabled="true"
-                ;;
-            aosp90)
-                mainrepo="https://android.googlesource.com/platform/manifest.git"
-                mainbranch="android-9.0.0_r21"
-                localManifestBranch="android-9.0"
-                treble_generate=""
-                extra_make_options=""
-                jack_enabled="false"
-                ;;
             aosp10)
                 mainrepo="https://android.googlesource.com/platform/manifest.git"
-                mainbranch="android-10.0.0_r33"
+                mainbranch="android-10.0.0_r40"
                 localManifestBranch="android-10.0"
                 treble_generate=""
                 extra_make_options=""
-                jack_enabled="false"
-                ;;
-            carbon-oreo)
-                mainrepo="https://github.com/CarbonROM/android.git"
-                mainbranch="cr-6.1"
-                localManifestBranch="android-8.1"
-                treble_generate="carbon"
-                extra_make_options="WITHOUT_CHECK_API=true"
-                jack_enabled="true"
-                ;;
-            e-pie)
-                mainrepo="https://gitlab.e.foundation/e/os/android/"
-                mainbranch="v1-pie"
-                localManifestBranch="android-9.0"
-                treble_generate="lineage"
-                extra_make_options="WITHOUT_CHECK_API=true"
-                jack_enabled="false"
-                ;;
-            e-oreo)
-                mainrepo="https://gitlab.e.foundation/e/os/android/"
-                mainbranch="v1-oreo"
-                localManifestBranch="android-8.1"
-                treble_generate="lineage"
-                extra_make_options="WITHOUT_CHECK_API=true"
-                jack_enabled="true"
-                ;;
-            lineage151)
-                mainrepo="https://github.com/LineageOS/android.git"
-                mainbranch="lineage-15.1"
-                localManifestBranch="android-8.1"
-                treble_generate="lineage"
-                extra_make_options="WITHOUT_CHECK_API=true"
-                jack_enabled="true"
-                ;;
-            lineage160)
-                mainrepo="https://github.com/LineageOS/android.git"
-                mainbranch="lineage-16.0"
-                localManifestBranch="android-9.0"
-                treble_generate="lineage"
-                extra_make_options="WITHOUT_CHECK_API=true"
                 jack_enabled="false"
                 ;;
             lineage171)
@@ -183,30 +95,6 @@ function get_rom_type() {
                 extra_make_options="WITHOUT_CHECK_API=true"
                 jack_enabled="false"
                 ;;
-            rr-oreo)
-                mainrepo="https://github.com/ResurrectionRemix/platform_manifest.git"
-                mainbranch="oreo"
-                localManifestBranch="android-8.1"
-                treble_generate="rr"
-                extra_make_options="WITHOUT_CHECK_API=true"
-                jack_enabled="true"
-                ;;
-            pixel81)
-                mainrepo="https://github.com/PixelExperience/manifest.git"
-                mainbranch="oreo-mr1"
-                localManifestBranch="android-8.1"
-                treble_generate="pixel"
-                extra_make_options="WITHOUT_CHECK_API=true"
-                jack_enabled="true"
-                ;;
-            pixel90)
-                mainrepo="https://github.com/PixelExperience/manifest.git"
-                mainbranch="pie"
-                localManifestBranch="android-9.0"
-                treble_generate="pixel"
-                extra_make_options="WITHOUT_CHECK_API=true"
-                jack_enabled="false"
-                ;;
             pixel100)
                 mainrepo="https://github.com/PixelExperience/manifest.git"
                 mainbranch="ten"
@@ -214,110 +102,6 @@ function get_rom_type() {
                 treble_generate="pixel"
                 extra_make_options="WITHOUT_CHECK_API=true"
                 jack_enabled="false"
-                ;;
-            potato-pie)
-                mainrepo="https://github.com/PotatoProject/manifest.git"
-                mainbranch="baked-release"
-                localManifestBranch="android-9.0"
-                treble_generate="potato"
-                extra_make_options="WITHOUT_CHECK_API=true"
-                jack_enabled="false"
-                ;;
-            crdroid-oreo)
-                mainrepo="https://github.com/crdroidandroid/android.git"
-                mainbranch="8.1"
-                localManifestBranch="android-8.1"
-                treble_generate="crdroid"
-                extra_make_options="WITHOUT_CHECK_API=true"
-                jack_enabled="true"
-                ;;
-            mokee-oreo)
-                mainrepo="https://github.com/mokee/android.git"
-                mainbranch="mko-mr1"
-                localManifestBranch="android-8.1"
-                treble_generate="mokee"
-                extra_make_options="WITHOUT_CHECK_API=true"
-                jack_enabled="true"
-                ;;
-            aicp-oreo)
-                mainrepo="https://github.com/AICP/platform_manifest.git"
-                mainbranch="o8.1"
-                localManifestBranch="android-8.1"
-                treble_generate="aicp"
-                extra_make_options="WITHOUT_CHECK_API=true"
-                jack_enabled="true"
-                ;;
-            aokp-oreo)
-                mainrepo="https://github.com/AOKP/platform_manifest.git"
-                mainbranch="oreo"
-                localManifestBranch="android-8.1"
-                treble_generate="aokp"
-                extra_make_options="WITHOUT_CHECK_API=true"
-                jack_enabled="true"
-                ;;
-            aex-pie)
-                mainrepo="https://github.com/AospExtended/manifest.git"
-                mainbranch="9.x"
-                localManifestBranch="android-9.0"
-                treble_generate="aex"
-                extra_make_options="WITHOUT_CHECK_API=true"
-                jack_enabled="false"
-                ;;
-            slim-oreo)
-                mainrepo="https://github.com/SlimRoms/platform_manifest.git"
-                mainbranch="or8.1"
-                localManifestBranch="android-8.1"
-                treble_generate="slim"
-                extra_make_options="WITHOUT_CHECK_API=true"
-                jack_enabled="true"
-                ;;
-            havoc-pie)
-                mainrepo="https://github.com/Havoc-OS/android_manifest.git"
-                mainbranch="pie"
-                localManifestBranch="android-9.0"
-                treble_generate="havoc"
-                extra_make_options="WITHOUT_CHECK_API=true"
-                jack_enabled="false"
-                ;;
-            komodo-pie)
-                mainrepo="https://github.com/KomodOS-Rom/platform_manifest.git"
-                mainbranch="pie"
-                localManifestBranch="android-9.0"
-                treble_generate="komodo"
-                extra_make_options="WITHOUT_CHECK_API=true"
-                jack_enabled="false"
-                ;;
-            rebellion-pie)
-                mainrepo="https://github.com/RebellionOS/manifest.git"
-                mainbranch="pie"
-                localManifestBranch="android-9.0"
-                treble_generate="rebellion"
-                extra_make_options="WITHOUT_CHECK_API=true"
-                jack_enabled="false"
-                ;;
-            aquarios)
-                mainrepo="https://github.com/aquarios/manifest.git"
-                mainbranch="a9"
-                localManifestBranch="android-9.0"
-                treble_generate="aquarios"
-                extra_make_options="WITHOUT_CHECK_API=true"
-                jack_enabled="false"
-                ;;
-            aosmp-pie)
-                mainrepo="https://gitlab.com/AOSmP/android_manifest.git"
-                mainbranch="pie"
-                localManifestBranch="android-9.0"
-                treble_generate="aosmp"
-                extra_make_options="WITHOUT_CHECK_API=true"
-                jack_enabled="false"
-                ;;
-	   graphene10)
-	   	mainrepo="https://github.com/GrapheneOS/platform_manifest.git"
-		mainbranch="10"
-		localManifestBranch="android-10.0"
-		treble_generate="graphene"
-		extra_make_options="WITHOUT_CHECK_API=true"
-		jack_enabled="false"
 	   
 	esac
         shift
@@ -418,13 +202,7 @@ function init_local_manifest() {
 }
 
 download_patches() {
-	if [[ $localManifestBranch == android-10.0 ]];then
-		githubMatch=v2..
-	elif [[ $localManifestBranch == android-9.0 ]];then
-		githubMatch=v1..
-	else
-		githubMatch=v..
-	fi
+	githubMatch=v2..
     jq --help > /dev/null
 	wantedRelease="$(curl --silent https://api.github.com/repos/phhusson/treble_experimentations/releases |jq -r '.[] | .tag_name' |grep -E "$githubMatch\$" |sort -V | tail -n 1)"
 	wget "https://github.com/phhusson/treble_experimentations/releases/download/$wantedRelease/patches.zip" -O patches.zip
