@@ -12,7 +12,7 @@ export LC_ALL=C
 
 
 manifest_url="https://android.googlesource.com/platform/manifest"
-aosp="android-10.0.0_r40"
+aosp="android-10.0.0_r41"
 phh="420rom-10"
 
 if [ "$release" == true ];then
