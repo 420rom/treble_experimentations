@@ -81,7 +81,7 @@ function get_rom_type() {
                 ;;
             aosp10)
                 mainrepo="https://android.googlesource.com/platform/manifest.git"
-                mainbranch="android-10.0.0_r41"
+                mainbranch="android-10.0.0_r45"
                 localManifestBranch="android-10.0"
                 treble_generate=""
                 extra_make_options=""
@@ -275,7 +275,7 @@ function fix_missings() {
 		cd ../../..
 		mkdir -p device/generic/common/nfc
 		cd device/generic/common/nfc
-		curl "https://android.googlesource.com/device/generic/common/+/refs/tags/android-10.0.0_r41/nfc/libnfc-nci.conf?format=TEXT"| base64 --decode > libnfc-nci.conf
+		curl "https://android.googlesource.com/device/generic/common/+/refs/tags/android-10.0.0_r45/nfc/libnfc-nci.conf?format=TEXT"| base64 --decode > libnfc-nci.conf
 		cd ../../../..
 		sed -i '/Copies the APN/,/include $(BUILD_PREBUILT)/{/include $(BUILD_PREBUILT)/ s/.*/ /; t; d}' vendor/*/prebuilt/common/Android.mk 2>/dev/null || true
 	fi
