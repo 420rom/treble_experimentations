@@ -12,8 +12,8 @@ export LC_ALL=C
 
 
 manifest_url="https://android.googlesource.com/platform/manifest"
-aosp="android-10.0.0_r45"
-phh="420rom-10"
+aosp="android-11.0.0_r3"
+phh="420rom-11"
 
 if [ "$release" == true ];then
     [ -z "$version" ] && exit 1
@@ -47,7 +47,15 @@ repo manifest -r > release/$rom_fp/manifest.xml
 bash "$originFolder"/list-patches.sh
 cp patches.zip release/$rom_fp/patches.zip
 
-buildVariant treble_arm64_agN-userdebug quack-arm64-aonly-gapps-nosu
+buildVariant treble_arm64_agN-userdebug roar-arm64-aonly-gapps-nosu
+    (
+        git clone https://github.com/phhusson/sas-creator
+        cd sas-creator
+
+        #Those require running as root
+        bash run.sh 64
+        xz -c s.img -T0 > release/$rom_fp/system-roar-arm64-aonly-vanilla.img.xz
+    )
 
 if [ "$release" == true ];then
     (
@@ -58,8 +66,8 @@ if [ "$release" == true ];then
         source venv/bin/activate
         pip install -r $originFolder/release/requirements.txt
 
-        name="AOSP 10.0"
-        [ "$1" == "android-10.0" ] && name="AOSP 10.0"
+        name="AOSP 11.0"
+        [ "$1" == "android-11.0" ] && name="AOSP 11.0"
         python $originFolder/release/push.py "$name" "$version" release/$rom_fp/
         rm -Rf venv
     )
