@@ -52,9 +52,11 @@ buildVariant treble_arm64_agN-userdebug roar-arm64-aonly-gapps-nosu
         git clone https://github.com/phhusson/sas-creator
         cd sas-creator
 
+        git clone https://github.com/phhusson/vendor_vndk -b android-11.0
+
         #Those require running as root
         bash run.sh 64
-        xz -c s.img -T0 > release/$rom_fp/system-roar-arm64-aonly-vanilla.img.xz
+        xz -c s.img -T0 > ../release/$rom_fp/system-roar-arm64-aonly-vanilla.img.xz
     )
 
 if [ "$release" == true ];then
