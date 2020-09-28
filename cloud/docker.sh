@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ "$#" -ne 1 ];then
-	echo "Usage: $0 <android-10.0|android-9.0|android-8.1>"
+	echo "Usage: $0 <android-11.0|android-10.0|android-9.0|android-8.1>"
 	exit 1
 fi
 
@@ -34,9 +34,12 @@ name="phh-treble-$suffix"
 
 echo "Running build on $name"
 
-docker run --name "$name" --rm -d ubuntu:18.04 sleep infinity
+ocker run --privileged --name "$name" --rm -d ubuntu:20.10 sleep infinity
 
 docker exec "$name" echo "Good morning, now building"
+
+run_script 'for i in $(seq 0 24);do mknod /dev/loop$i b 7 $i;done'
+
 run_script 'export DEBIAN_FRONTEND=noninteractive && dpkg --add-architecture i386 && \
 	apt-get update && \
 	(yes "" | apt-get install -y -o DPkg::options::="--force-confdef" -o DPkg::options::="--force-confold" \
@@ -67,7 +70,8 @@ run_script 'export DEBIAN_FRONTEND=noninteractive && dpkg --add-architecture i38
 		python-pip \
 		python3-pip \
 		git \
-       wget )'
+       wget \
+       )'
 
 run_script '
 	git config --global user.name "Pierre-Hugues Husson" && \
