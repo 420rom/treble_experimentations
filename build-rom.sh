@@ -6,7 +6,7 @@ mkdir -p release/$rom_fp/
 set -e
 
 if [ "$#" -le 1 ];then
-	echo "Usage: $0 <android-8.1> <carbon|lineage|rr> '# of jobs'"
+	echo "Usage: $0 <android-11.0> <lineage|420rom> '# of jobs'"
 	exit 0
 fi
 localManifestBranch=$1
@@ -34,33 +34,35 @@ fi
 
 #We don't want to replace from AOSP since we'll be applying patches by hand
 rm -f .repo/local_manifests/replace.xml
-if [ "$rom" == "carbon" ];then
-	repo init -u https://github.com/CarbonROM/android -b cr-6.1
-elif [ "$rom" == "lineage15" ];then
+if [ "$rom" == "lineage15" ];then
 	repo init -u https://github.com/LineageOS/android.git -b lineage-15.1
 elif [ "$rom" == "lineage16" ];then
 	repo init -u https://github.com/LineageOS/android.git -b lineage-16.0
-elif [ "$rom" == "rr" ];then
-	repo init -u https://github.com/ResurrectionRemix/platform_manifest.git -b pie
+elif [ "$rom" == "lineage18" ];then
+	repo init -u https://github.com/LineageOS/android.git -b lineage-18.0
+elif [ "$rom" == "420rom" ];then
+	repo init -u https://github.com/420rom/android.git -b 420rom-11
 fi
 
 if [ -d .repo/local_manifests ] ;then
-	( cd .repo/local_manifests; git fetch; git reset --hard; git checkout origin/$localManifestBranch)
+	( cd .repo/local_manifests; git fetch; git checkout origin/420rom-11)
 else
-	git clone https://github.com/phhusson/treble_manifest .repo/local_manifests -b $localManifestBranch
+	git clone https://github.com/420rom/treble_manifest .repo/local_manifests -b 420rom-11
 fi
 
-if [ -z "$local_patches" ];then
-    if [ -d patches ];then
-        ( cd patches; git fetch; git reset --hard; git checkout origin/$localManifestBranch)
-    else
-        git clone https://github.com/phhusson/treble_patches patches -b $localManifestBranch
-    fi
-else
-    rm -Rf patches
-    mkdir patches
-    unzip  "$local_patches" -d patches
+file="patches.zip"
+if [ -f $file ] ; then
+    rm $file
 fi
+
+folder="patches"
+if [ -f $folder ] ; then
+    rm -rf $folder
+fi
+
+mkdir patches
+wget https://github.com/phhusson/treble_experimentations/releases/download/v300.f/patches.zip
+unzip  patches.zip -d patches
 
 #We don't want to replace from AOSP since we'll be applying patches by hand
 rm -f .repo/local_manifests/replace.xml
@@ -70,12 +72,6 @@ rm -f device/*/sepolicy/common/private/genfs_contexts
 (cd device/phh/treble; git clean -fdx; bash generate.sh $rom)
 
 sed -i -e 's/BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1610612736/BOARD_SYSTEMIMAGE_PARTITION_SIZE := 2147483648/g' device/phh/treble/phhgsi_arm64_a/BoardConfig.mk
-
-if [ -f vendor/rr/prebuilt/common/Android.mk ];then
-    sed -i \
-        -e 's/LOCAL_MODULE := Wallpapers/LOCAL_MODULE := WallpapersRR/g' \
-        vendor/rr/prebuilt/common/Android.mk
-fi
 
 bash "$(dirname "$0")/apply-patches.sh" patches
 

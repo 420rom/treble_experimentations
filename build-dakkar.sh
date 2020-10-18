@@ -37,6 +37,7 @@ Options:
 
 ROM types:
 
+  420rom
   aex-pie
   aicp-oreo
   aokp-oreo
@@ -45,6 +46,7 @@ ROM types:
   aosp81
   aosp90
   aosp10
+  aosp11
   aquarios
   carbon-oreo
   crdroid-oreo
@@ -54,6 +56,8 @@ ROM types:
   komodo-pie
   lineage151
   lineage160
+  lineage171
+  lineage180
   mokee-oreo
   pixel81
   pixel90
@@ -92,6 +96,14 @@ EOF
 function get_rom_type() {
     while [[ $# -gt 0 ]]; do
         case "$1" in
+            420rom)
+                mainrepo="https://github.com/420rom/android.git"
+                mainbranch="420rom-11"
+                localManifestBranch="android-11.0"
+                treble_generate="420rom"
+                extra_make_options="WITHOUT_CHECK_API=true"
+                jack_enabled="false"
+                ;;
             aosp80)
                 mainrepo="https://android.googlesource.com/platform/manifest.git"
                 mainbranch="android-vts-8.0_r4"
@@ -124,6 +136,14 @@ function get_rom_type() {
                 extra_make_options=""
                 jack_enabled="false"
                 ;;
+            aosp11)
+                mainrepo="https://android.googlesource.com/platform/manifest.git"
+                mainbranch="android-11.0.0_r8"
+                localManifestBranch="android-11.0"
+                treble_generate=""
+                extra_make_options=""
+                jack_enabled="false"
+                ;;
             carbon-oreo)
                 mainrepo="https://github.com/CarbonROM/android.git"
                 mainbranch="cr-6.1"
@@ -148,7 +168,7 @@ function get_rom_type() {
                 extra_make_options="WITHOUT_CHECK_API=true"
                 jack_enabled="true"
                 ;;
-            lineage151)
+           lineage151)
                 mainrepo="https://github.com/LineageOS/android.git"
                 mainbranch="lineage-15.1"
                 localManifestBranch="android-8.1"
@@ -160,6 +180,22 @@ function get_rom_type() {
                 mainrepo="https://github.com/LineageOS/android.git"
                 mainbranch="lineage-16.0"
                 localManifestBranch="android-9.0"
+                treble_generate="lineage"
+                extra_make_options="WITHOUT_CHECK_API=true"
+                jack_enabled="false"
+                ;;
+            lineage171)
+                mainrepo="https://github.com/LineageOS/android.git"
+                mainbranch="lineage-17.1"
+                localManifestBranch="android-10.0"
+                treble_generate="lineage"
+                extra_make_options="WITHOUT_CHECK_API=true"
+                jack_enabled="false"
+                ;;
+            lineage180)
+                mainrepo="https://github.com/LineageOS/android.git"
+                mainbranch="lineage-18.0"
+                localManifestBranch="android-11.0"
                 treble_generate="lineage"
                 extra_make_options="WITHOUT_CHECK_API=true"
                 jack_enabled="false"
@@ -382,7 +418,7 @@ function clone_or_checkout() {
             git checkout origin/"$localManifestBranch"
         )
     else
-        git clone https://github.com/phhusson/"$repo" "$dir" -b "$localManifestBranch"
+        git clone https://github.com/420rom/"$repo" "$dir" -b "$localManifestBranch"
     fi
 }
 
@@ -391,16 +427,10 @@ function init_local_manifest() {
 }
 
 download_patches() {
-	if [[ $localManifestBranch == android-10.0 ]];then
-		githubMatch=v2..
-	elif [[ $localManifestBranch == android-9.0 ]];then
-		githubMatch=v1..
-	else
-		githubMatch=v..
-	fi
+	githubMatch=v2..
     jq --help > /dev/null
 	wantedRelease="$(curl --silent https://api.github.com/repos/phhusson/treble_experimentations/releases |jq -r '.[] | .tag_name' |grep -E "$githubMatch\$" |sort -V | tail -n 1)"
-	wget "https://github.com/phhusson/treble_experimentations/releases/download/$wantedRelease/patches.zip" -O patches.zip
+	wget "https://github.com/phhusson/treble_experimentations/releases/download/v300.f/patches.zip" -O patches.zip
 	rm -Rf patches
 	unzip patches.zip -d patches
 }
@@ -474,6 +504,19 @@ function fix_missings() {
 		cd ../../../..
 		sed -i '/Copies the APN/,/include $(BUILD_PREBUILT)/{/include $(BUILD_PREBUILT)/ s/.*/ /; t; d}' vendor/*/prebuilt/common/Android.mk 2>/dev/null || true
 	fi
+	if [[ "$localManifestBranch" == *"11"* ]]; then
+	        rm -rf vendor/*/packages/overlays/NoCutout*
+		# fix kernel source missing (on R)
+		sed 's;.*KERNEL_;//&;' -i vendor/*/build/soong/Android.bp 2>/dev/null || true
+		mkdir -p device/sample/etc
+		cd device/sample/etc
+		curl "https://raw.githubusercontent.com/LineageOS/android_vendor_lineage/lineage-18.0/prebuilt/common/etc/apns-conf.xml" > apns-conf.xml
+		cd ../../..
+		mkdir -p device/generic/common/nfc
+		cd device/generic/common/nfc
+		curl "https://android.googlesource.com/device/generic/common/+/refs/tags/android-11.0.0_r8/nfc/libnfc-nci.conf?format=TEXT"| base64 --decode > libnfc-nci.conf
+		cd ../../../..
+		sed -i '/Copies the APN/,/include $(BUILD_PREBUILT)/{/include $(BUILD_PREBUILT)/ s/.*/ /; t; d}' vendor/*/prebuilt/common/Android.mk 2>/dev/null || true
 }
 
 function build_variant() {
