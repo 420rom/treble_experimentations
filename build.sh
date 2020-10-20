@@ -61,9 +61,30 @@ bash "$originFolder"/list-patches.sh
 cp patches.zip release/$rom_fp/patches.zip
 
 if [ "$1" = "android-11.0" ];then
-	buildVariant treble_arm64_bvS-userdebug roar-arm64-ab-vanilla
-	buildVariant treble_arm_bvS-userdebug roar-arm-ab-vanilla
-	buildVariant treble_a64_bvS-userdebug roar-a64-ab-vanilla
+	buildVariant treble_arm64_avS-userdebug roar-arm64-aonly-vanilla-su
+	buildVariant treble_arm_avS-userdebug roar-arm-aonly-vanilla-su
+	buildVariant treble_a64_avS-userdebug roar-a64-aonly-vanilla-su
+	buildVariant treble_arm64_avN-userdebug roar-arm64-aonly-vanilla-nosu
+	buildVariant treble_arm_avN-userdebug roar-arm-aonly-vanilla-nosu
+	buildVariant treble_a64_avN-userdebug roar-a64-aonly-vanilla-nosu
+	buildVariant treble_arm64_agS-userdebug roar-arm64-aonly-gapps-su
+	buildVariant treble_arm_agS-userdebug roar-arm-aonly-gapps-su
+	buildVariant treble_a64_agS-userdebug roar-a64-aonly-gapps-su
+	buildVariant treble_arm64_agN-userdebug roar-arm64-aonly-gapps-nosu
+	buildVariant treble_arm_agN-userdebug roar-arm-aonly-gapps-nosu
+	buildVariant treble_a64_agN-userdebug roar-a64-aonly-gapps-nosu
+	buildVariant treble_arm64_bvS-userdebug roar-arm64-ab-vanilla-su
+	buildVariant treble_arm_bvS-userdebug roar-arm-ab-vanilla-su
+	buildVariant treble_a64_bvS-userdebug roar-a64-ab-vanilla-su
+	buildVariant treble_arm64_bvN-userdebug roar-arm64-ab-vanilla-nosu
+	buildVariant treble_arm_bvN-userdebug roar-arm-ab-vanilla-nosu
+	buildVariant treble_a64_bvN-userdebug roar-a64-ab-vanilla-nosu
+	buildVariant treble_arm64_bgS-userdebug roar-arm64-ab-gapps-su
+	buildVariant treble_arm_bgS-userdebug roar-arm-ab-gapps-su
+	buildVariant treble_a64_bgS-userdebug roar-a64-ab-gapps-su
+	buildVariant treble_arm64_bgN-userdebug roar-arm64-ab-gapps-nosu
+	buildVariant treble_arm_bgN-userdebug roar-arm-ab-gapps-nosu
+	buildVariant treble_a64_bgN-userdebug roar-a64-ab-gapps-nosu
     (
         git clone https://github.com/phhusson/sas-creator
         cd sas-creator
@@ -86,11 +107,15 @@ if [ "$1" = "android-11.0" ];then
 elif [ "$1" = "android-10.0" ];then
 	buildVariant treble_arm64_afS-userdebug quack-arm64-aonly-floss
 	buildVariant treble_arm64_avS-userdebug quack-arm64-aonly-vanilla
-	buildVariant treble_arm64_agS-userdebug quack-arm64-aonly-gapps
+    buildVariant treble_arm64_avN-userdebug arm64-aonly-vanilla-nosu
+    buildVariant treble_arm64_agS-userdebug arm64-aonly-gapps-su
+    buildVariant treble_arm64_agN-userdebug arm64-aonly-gapps-nosu
 	buildVariant treble_arm64_aoS-userdebug quack-arm64-aonly-go
 	buildVariant treble_arm64_bfS-userdebug quack-arm64-ab-floss
 	buildVariant treble_arm64_bvS-userdebug quack-arm64-ab-vanilla
-	buildVariant treble_arm64_bgS-userdebug quack-arm64-ab-gapps
+	buildVariant treble_arm64_bvN-userdebug arm64-ab-vanilla-nosu
+    buildVariant treble_arm64_bgS-userdebug arm64-ab-gapps-su
+    buildVariant treble_arm64_bgN-userdebug arm64-ab-gapps-nosu
 	buildVariant treble_arm64_boS-userdebug quack-arm64-ab-go
 	buildVariant treble_arm_avS-userdebug quack-arm-aonly-vanilla
 	buildVariant treble_arm_agS-userdebug quack-arm-aonly-gapps

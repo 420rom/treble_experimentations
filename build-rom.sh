@@ -87,9 +87,13 @@ buildVariant() {
 
 repo manifest -r > release/$rom_fp/manifest.xml
 buildVariant treble_arm64_avN-userdebug arm64-aonly-vanilla-nosu
+buildVariant treble_arm64_avS-userdebug arm64-aonly-vanilla-su
 buildVariant treble_arm64_agS-userdebug arm64-aonly-gapps-su
+buildVariant treble_arm64_agN-userdebug arm64-aonly-gapps-nosu
 buildVariant treble_arm64_bvN-userdebug arm64-ab-vanilla-nosu
+buildVariant treble_arm64_bvS-userdebug arm64-ab-vanilla-su
 buildVariant treble_arm64_bgS-userdebug arm64-ab-gapps-su
+buildVariant treble_arm64_bgN-userdebug arm64-ab-gapps-nosu
 buildVariant treble_arm_avN-userdebug arm-aonly-vanilla-nosu
 buildVariant treble_arm_aoS-userdebug arm-aonly-gapps
 buildVariant treble_a64_avN-userdebug arm32_binder64-aonly-vanilla-nosu
