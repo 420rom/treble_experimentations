@@ -517,6 +517,7 @@ function fix_missings() {
 		curl "https://android.googlesource.com/device/generic/common/+/refs/tags/android-11.0.0_r8/nfc/libnfc-nci.conf?format=TEXT"| base64 --decode > libnfc-nci.conf
 		cd ../../../..
 		sed -i '/Copies the APN/,/include $(BUILD_PREBUILT)/{/include $(BUILD_PREBUILT)/ s/.*/ /; t; d}' vendor/*/prebuilt/common/Android.mk 2>/dev/null || true
+    fi
 }
 
 function build_variant() {
