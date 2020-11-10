@@ -433,9 +433,12 @@ download_patches() {
 	wget "https://github.com/phhusson/treble_experimentations/releases/download/v300.f/patches.zip" -O patches.zip
 	rm -Rf patches
 	unzip patches.zip -d patches
+  echo "   ...done Downloading Patches"
 }
 
 function init_patches() {
+    echo "Initializing Patches..."
+    echo "   ...treble_generate="$treble_generate
     if [[ -n "$treble_generate" ]]; then
 	download_patches
 
@@ -451,6 +454,7 @@ function init_patches() {
         # should I do this? will it interfere with building non-gapps images?
         # rm -f .repo/local_manifests/opengapps.xml
     fi
+    echo "   ...done Initializing Patches"
 }
 
 function sync_repo() {
@@ -458,7 +462,10 @@ function sync_repo() {
 }
 
 function patch_things() {
+    echo "Patching Things..."
+    echo "   ...treble_generate="$treble_generate
     if [[ -n "$treble_generate" ]]; then
+        echo "   ...removing sepolicies"
         rm -f device/*/sepolicy/common/private/genfs_contexts
         (
             cd device/phh/treble
@@ -469,11 +476,13 @@ function patch_things() {
         )
         bash "$(dirname "$0")/apply-patches.sh" patches
     else
+        echo "   ...generating Makefiles"
         (
             cd device/phh/treble
             git clean -fdx
             bash generate.sh
         )
+        echo "   ...calling list-patches.sh"
         repo manifest -r > release/"$rom_fp"/manifest.xml
         bash "$(dirname "$0")"/list-patches.sh
         cp patches.zip release/"$rom_fp"/patches.zip
