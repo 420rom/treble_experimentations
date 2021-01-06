@@ -24,7 +24,7 @@ elif [ "$1" == "android-10.0" ];then
     phh="420rom-10"
 elif [ "$1" == "android-11.0" ];then
     manifest_url="https://android.googlesource.com/platform/manifest"
-    aosp="android-11.0.0_r20"
+    aosp="android-11.0.0_r27"
     phh="420rom-11"
 fi
 
@@ -107,8 +107,8 @@ if [ "$1" = "android-11.0" ];then
     ( cd sas-creator; bash run.sh 32; xz -c s.img -T0 > ../release/$rom_fp/system-roar-arm-aonly-vanilla.img.xz )
 
     # ARM32_binder64 vanilla {ab, ab vndk lite}
-	buildVariant treble_a64_bvS-userdebug roar-a64-ab-vanilla
-    ( cd sas-creator; bash lite-adapter.sh 32; xz -c s.img -T0 > ../release/$rom_fp/system-roar-a64-ab-vndklite-vanilla.img.xz)
+	buildVariant treble_a64_bvS-userdebug roar-arm32_binder64-ab-vanilla
+    ( cd sas-creator; bash lite-adapter.sh 32; xz -c s.img -T0 > ../release/$rom_fp/system-roar-arm32_binder64-ab-vndklite-vanilla.img.xz)
 
     # ARM64 Gapps {ab, a-only, ab vndk lite}
 	buildVariant treble_arm64_bgS-userdebug roar-arm64-ab-gapps
@@ -116,8 +116,12 @@ if [ "$1" = "android-11.0" ];then
     ( cd sas-creator; bash lite-adapter.sh 64; xz -c s.img -T0 > ../release/$rom_fp/system-roar-arm64-ab-vndklite-gapps.img.xz )
 
     # ARM32_binder64 go gapps {ab, ab vndk lite}
-	buildVariant treble_a64_boS-userdebug roar-a64-ab-gogapps
-    ( cd sas-creator; bash lite-adapter.sh 32; xz -c s.img -T0 > ../release/$rom_fp/system-roar-a64-ab-vndklite-gogapps.img.xz )
+	buildVariant treble_a64_boS-userdebug roar-arm32_binder64-ab-gogapps
+    ( cd sas-creator; bash lite-adapter.sh 32; xz -c s.img -T0 > ../release/$rom_fp/system-roar-arm32_binder64-ab-vndklite-gogapps.img.xz )
+
+    # ARM32_binder64 gapps {ab, ab vndk lite}
+	buildVariant treble_a64_bgS-userdebug roar-arm32_binder64-ab-gapps
+    ( cd sas-creator; bash lite-adapter.sh 32; xz -c s.img -T0 > ../release/$rom_fp/system-roar-arm32_binder64-ab-vndklite-gapps.img.xz )
 elif [ "$1" = "android-10.0" ];then
 	buildVariant treble_arm64_afS-userdebug quack-arm64-aonly-floss
 	buildVariant treble_arm64_avS-userdebug quack-arm64-aonly-vanilla
