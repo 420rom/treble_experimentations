@@ -37,7 +37,7 @@ Options:
 
 ROM types:
 
-  420rom
+  420rom-11
   aex-pie
   aicp-oreo
   aokp-oreo
@@ -50,6 +50,7 @@ ROM types:
   aquarios
   carbon-oreo
   crdroid-oreo
+  dot11
   e-pie
   e-oreo
   havoc-pie
@@ -96,11 +97,11 @@ EOF
 function get_rom_type() {
     while [[ $# -gt 0 ]]; do
         case "$1" in
-            420rom)
+            420rom-11)
                 mainrepo="https://github.com/420rom/android.git"
                 mainbranch="420rom-11"
-                localManifestBranch="android-11.0"
-                treble_generate="420rom"
+                localManifestBranch="420rom-11"
+                treble_generate="420rom-11"
                 extra_make_options="WITHOUT_CHECK_API=true"
                 jack_enabled="false"
                 ;;
@@ -151,6 +152,14 @@ function get_rom_type() {
                 treble_generate="carbon"
                 extra_make_options="WITHOUT_CHECK_API=true"
                 jack_enabled="true"
+                ;;
+            dot11)
+                mainrepo="https://android.googlesource.com/platform/manifest.git"
+                mainbranch="android-11.0.0_r34"
+                localManifestBranch="android-11.0"
+                treble_generate="dot11"
+                extra_make_options="WITHOUT_CHECK_API=true"
+                jack_enabled="false"
                 ;;
             e-pie)
                 mainrepo="https://gitlab.e.foundation/e/os/android/"
@@ -430,7 +439,7 @@ download_patches() {
 	githubMatch=v2..
     jq --help > /dev/null
 	wantedRelease="$(curl --silent https://api.github.com/repos/phhusson/treble_experimentations/releases |jq -r '.[] | .tag_name' |grep -E "$githubMatch\$" |sort -V | tail -n 1)"
-	wget "https://github.com/phhusson/treble_experimentations/releases/download/v300.f/patches.zip" -O patches.zip
+	wget "https://github.com/phhusson/treble_experimentations/releases/download/v306/patches.zip" -O patches.zip
 	rm -Rf patches
 	unzip patches.zip -d patches
   echo "   ...done Downloading Patches"

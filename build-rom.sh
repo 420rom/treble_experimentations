@@ -40,7 +40,7 @@ elif [ "$rom" == "lineage16" ];then
 	repo init -u https://github.com/LineageOS/android.git -b lineage-16.0
 elif [ "$rom" == "lineage18" ];then
 	repo init -u https://github.com/LineageOS/android.git -b lineage-18.0
-elif [ "$rom" == "420rom" ];then
+elif [ "$rom" == "420rom-11" ];then
 	repo init -u https://github.com/420rom/android.git -b 420rom-11
 fi
 
@@ -61,7 +61,7 @@ if [ -f $folder ] ; then
 fi
 
 mkdir patches
-wget https://github.com/phhusson/treble_experimentations/releases/download/v300.f/patches.zip
+wget https://github.com/phhusson/treble_experimentations/releases/download/v306/patches.zip
 unzip  patches.zip -d patches
 
 #We don't want to replace from AOSP since we'll be applying patches by hand

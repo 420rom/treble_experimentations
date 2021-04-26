@@ -27,7 +27,7 @@ elif [ "$1" == "android-10.0" ];then
 elif [ "$1" == "android-11.0" ];then
     manifest_url="https://android.googlesource.com/platform/manifest"
     aosp="android-11.0.0_r34"
-    phh="android-11.0"
+    phh="420rom-11"
 else
 	# guess android version from version number
 	rebuild_release="yes"
@@ -59,7 +59,7 @@ else
 	if [ -d .repo/local_manifests ] ;then
 		( cd .repo/local_manifests; git fetch; git reset --hard; git checkout origin/$phh)
 	else
-		git clone https://github.com/420rom/treble_manifest .repo/local_manifests -b 420rom11
+		git clone https://github.com/420rom/treble_manifest .repo/local_manifests -b 420rom-11
 	fi
 fi
 repo sync -c -j 1 --force-sync
