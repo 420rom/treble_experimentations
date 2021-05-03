@@ -42,7 +42,7 @@ else
 	fi
 	# download manifest with the given version number
 	tmp_manifest_source=$(mktemp -d)
-	wget "https://github.com/420rom/treble_experimentations/releases/download/$1/manifest.xml" -O $tmp_manifest_source/manifest.xml
+	wget "ssh://git@github.com/420rom/treble_experimentations/releases/download/$1/manifest.xml" -O $tmp_manifest_source/manifest.xml
 	sed -i 's/<remote name="aosp" fetch=".." review="https:\/\/android-review.googlesource.com\/"\/>/<remote name="aosp" fetch="https:\/\/android.googlesource.com\/" review="https:\/\/android-review.googlesource.com\/"\/>/' $tmp_manifest_source/manifest.xml
 	(cd $tmp_manifest_source; git init; git add manifest.xml; git commit -m "$1")
 fi
@@ -59,7 +59,7 @@ else
 	if [ -d .repo/local_manifests ] ;then
 		( cd .repo/local_manifests; git fetch; git reset --hard; git checkout origin/$phh)
 	else
-		git clone https://github.com/420rom/treble_manifest .repo/local_manifests -b 420rom-11
+		git clone ssh://git@github.com/420rom/treble_manifest .repo/local_manifests -b 420rom-11
 	fi
 fi
 repo sync -c -j 1 --force-sync
@@ -85,10 +85,10 @@ cp patches.zip release/$rom_fp/patches.zip
 
 if [ "$build_target" == "android-11.0" ];then
     (
-        git clone https://github.com/phhusson/sas-creator
+        git clone ssh://git@github.com/phhusson/sas-creator
         cd sas-creator
 
-        git clone https://github.com/phhusson/vendor_vndk -b android-10.0
+        git clone ssh://git@github.com/phhusson/vendor_vndk -b android-10.0
     )
 
     # ARM64 vanilla {ab, a-only, ab vndk lite}
