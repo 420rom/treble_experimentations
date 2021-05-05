@@ -98,7 +98,7 @@ function get_rom_type() {
     while [[ $# -gt 0 ]]; do
         case "$1" in
             420rom-11)
-                mainrepo="ssh://git@github.com/420rom/android.git"
+                mainrepo="https://github.com/420rom/android.git"
                 mainbranch="420rom-11"
                 localManifestBranch="420rom-11"
                 treble_generate="420rom-11"
@@ -106,7 +106,7 @@ function get_rom_type() {
                 jack_enabled="false"
                 ;;
             aosp80)
-                mainrepo="ssh://git@android.googlesource.com/platform/manifest.git"
+                mainrepo="https://android.googlesource.com/platform/manifest.git"
                 mainbranch="android-vts-8.0_r4"
                 localManifestBranch="master"
                 treble_generate=""
@@ -114,7 +114,7 @@ function get_rom_type() {
                 jack_enabled="true"
                 ;;
             aosp81)
-                mainrepo="ssh://git@android.googlesource.com/platform/manifest.git"
+                mainrepo="https://android.googlesource.com/platform/manifest.git"
                 mainbranch="android-8.1.0_r48"
                 localManifestBranch="android-8.1"
                 treble_generate=""
@@ -122,7 +122,7 @@ function get_rom_type() {
                 jack_enabled="true"
                 ;;
             aosp90)
-                mainrepo="ssh://git@android.googlesource.com/platform/manifest.git"
+                mainrepo="https://android.googlesource.com/platform/manifest.git"
                 mainbranch="android-9.0.0_r21"
                 localManifestBranch="android-9.0"
                 treble_generate=""
@@ -130,7 +130,7 @@ function get_rom_type() {
                 jack_enabled="false"
                 ;;
             aosp10)
-                mainrepo="ssh://git@android.googlesource.com/platform/manifest.git"
+                mainrepo="https://android.googlesource.com/platform/manifest.git"
                 mainbranch="android-10.0.0_r41"
                 localManifestBranch="android-10.0"
                 treble_generate=""
@@ -138,15 +138,15 @@ function get_rom_type() {
                 jack_enabled="false"
                 ;;
             aosp11)
-                mainrepo="ssh://git@android.googlesource.com/platform/manifest.git"
-                mainbranch="android-11.0.0_r8"
+                mainrepo="https://android.googlesource.com/platform/manifest.git"
+                mainbranch="android-11.0.0_r37"
                 localManifestBranch="android-11.0"
                 treble_generate=""
                 extra_make_options=""
                 jack_enabled="false"
                 ;;
             carbon-oreo)
-                mainrepo="ssh://git@github.com/CarbonROM/android.git"
+                mainrepo="https://github.com/CarbonROM/android.git"
                 mainbranch="cr-6.1"
                 localManifestBranch="android-8.1"
                 treble_generate="carbon"
@@ -154,15 +154,15 @@ function get_rom_type() {
                 jack_enabled="true"
                 ;;
             dot11)
-                mainrepo="ssh://git@android.googlesource.com/platform/manifest.git"
-                mainbranch="android-11.0.0_r34"
+                mainrepo="https://android.googlesource.com/platform/manifest.git"
+                mainbranch="android-11.0.0_r37"
                 localManifestBranch="android-11.0"
                 treble_generate="dot11"
                 extra_make_options="WITHOUT_CHECK_API=true"
                 jack_enabled="false"
                 ;;
             e-pie)
-                mainrepo="ssh://git@gitlab.e.foundation/e/os/android/"
+                mainrepo="https://gitlab.e.foundation/e/os/android/"
                 mainbranch="v1-pie"
                 localManifestBranch="android-9.0"
                 treble_generate="lineage"
@@ -170,7 +170,7 @@ function get_rom_type() {
                 jack_enabled="false"
                 ;;
             e-oreo)
-                mainrepo="ssh://git@gitlab.e.foundation/e/os/android/"
+                mainrepo="https://gitlab.e.foundation/e/os/android/"
                 mainbranch="v1-oreo"
                 localManifestBranch="android-8.1"
                 treble_generate="lineage"
@@ -178,7 +178,7 @@ function get_rom_type() {
                 jack_enabled="true"
                 ;;
            lineage151)
-                mainrepo="ssh://git@github.com/LineageOS/android.git"
+                mainrepo="https://github.com/LineageOS/android.git"
                 mainbranch="lineage-15.1"
                 localManifestBranch="android-8.1"
                 treble_generate="lineage"
@@ -186,7 +186,7 @@ function get_rom_type() {
                 jack_enabled="true"
                 ;;
             lineage160)
-                mainrepo="ssh://git@github.com/LineageOS/android.git"
+                mainrepo="https://github.com/LineageOS/android.git"
                 mainbranch="lineage-16.0"
                 localManifestBranch="android-9.0"
                 treble_generate="lineage"
@@ -194,7 +194,7 @@ function get_rom_type() {
                 jack_enabled="false"
                 ;;
             lineage171)
-                mainrepo="ssh://git@github.com/LineageOS/android.git"
+                mainrepo="https://github.com/LineageOS/android.git"
                 mainbranch="lineage-17.1"
                 localManifestBranch="android-10.0"
                 treble_generate="lineage"
@@ -202,7 +202,7 @@ function get_rom_type() {
                 jack_enabled="false"
                 ;;
             lineage180)
-                mainrepo="ssh://git@github.com/LineageOS/android.git"
+                mainrepo="https://github.com/LineageOS/android.git"
                 mainbranch="lineage-18.0"
                 localManifestBranch="android-11.0"
                 treble_generate="lineage"
@@ -210,7 +210,7 @@ function get_rom_type() {
                 jack_enabled="false"
                 ;;
             rr-oreo)
-                mainrepo="ssh://git@github.com/ResurrectionRemix/platform_manifest.git"
+                mainrepo="https://github.com/ResurrectionRemix/platform_manifest.git"
                 mainbranch="oreo"
                 localManifestBranch="android-8.1"
                 treble_generate="rr"
@@ -218,7 +218,7 @@ function get_rom_type() {
                 jack_enabled="true"
                 ;;
             pixel81)
-                mainrepo="ssh://git@github.com/PixelExperience/manifest.git"
+                mainrepo="https://github.com/PixelExperience/manifest.git"
                 mainbranch="oreo-mr1"
                 localManifestBranch="android-8.1"
                 treble_generate="pixel"
@@ -226,7 +226,7 @@ function get_rom_type() {
                 jack_enabled="true"
                 ;;
             pixel90)
-                mainrepo="ssh://git@github.com/PixelExperience/manifest.git"
+                mainrepo="https://github.com/PixelExperience/manifest.git"
                 mainbranch="pie"
                 localManifestBranch="android-9.0"
                 treble_generate="pixel"
@@ -234,7 +234,7 @@ function get_rom_type() {
                 jack_enabled="false"
                 ;;
             potato-pie)
-                mainrepo="ssh://git@github.com/PotatoProject/manifest.git"
+                mainrepo="https://github.com/PotatoProject/manifest.git"
                 mainbranch="baked-release"
                 localManifestBranch="android-9.0"
                 treble_generate="potato"
@@ -242,7 +242,7 @@ function get_rom_type() {
                 jack_enabled="false"
                 ;;
             crdroid-oreo)
-                mainrepo="ssh://git@github.com/crdroidandroid/android.git"
+                mainrepo="https://github.com/crdroidandroid/android.git"
                 mainbranch="8.1"
                 localManifestBranch="android-8.1"
                 treble_generate="crdroid"
@@ -250,7 +250,7 @@ function get_rom_type() {
                 jack_enabled="true"
                 ;;
             mokee-oreo)
-                mainrepo="ssh://git@github.com/mokee/android.git"
+                mainrepo="https://github.com/mokee/android.git"
                 mainbranch="mko-mr1"
                 localManifestBranch="android-8.1"
                 treble_generate="mokee"
@@ -258,7 +258,7 @@ function get_rom_type() {
                 jack_enabled="true"
                 ;;
             aicp-oreo)
-                mainrepo="ssh://git@github.com/AICP/platform_manifest.git"
+                mainrepo="https://github.com/AICP/platform_manifest.git"
                 mainbranch="o8.1"
                 localManifestBranch="android-8.1"
                 treble_generate="aicp"
@@ -266,7 +266,7 @@ function get_rom_type() {
                 jack_enabled="true"
                 ;;
             aokp-oreo)
-                mainrepo="ssh://git@github.com/AOKP/platform_manifest.git"
+                mainrepo="https://github.com/AOKP/platform_manifest.git"
                 mainbranch="oreo"
                 localManifestBranch="android-8.1"
                 treble_generate="aokp"
@@ -274,7 +274,7 @@ function get_rom_type() {
                 jack_enabled="true"
                 ;;
             aex-pie)
-                mainrepo="ssh://git@github.com/AospExtended/manifest.git"
+                mainrepo="https://github.com/AospExtended/manifest.git"
                 mainbranch="9.x"
                 localManifestBranch="android-9.0"
                 treble_generate="aex"
@@ -282,7 +282,7 @@ function get_rom_type() {
                 jack_enabled="false"
                 ;;
             slim-oreo)
-                mainrepo="ssh://git@github.com/SlimRoms/platform_manifest.git"
+                mainrepo="https://github.com/SlimRoms/platform_manifest.git"
                 mainbranch="or8.1"
                 localManifestBranch="android-8.1"
                 treble_generate="slim"
@@ -290,7 +290,7 @@ function get_rom_type() {
                 jack_enabled="true"
                 ;;
             havoc-pie)
-                mainrepo="ssh://git@github.com/Havoc-OS/android_manifest.git"
+                mainrepo="https://github.com/Havoc-OS/android_manifest.git"
                 mainbranch="pie"
                 localManifestBranch="android-9.0"
                 treble_generate="havoc"
@@ -298,7 +298,7 @@ function get_rom_type() {
                 jack_enabled="false"
                 ;;
             komodo-pie)
-                mainrepo="ssh://git@github.com/KomodOS-Rom/platform_manifest.git"
+                mainrepo="https://github.com/KomodOS-Rom/platform_manifest.git"
                 mainbranch="pie"
                 localManifestBranch="android-9.0"
                 treble_generate="komodo"
@@ -306,7 +306,7 @@ function get_rom_type() {
                 jack_enabled="false"
                 ;;
             rebellion-pie)
-                mainrepo="ssh://git@github.com/RebellionOS/manifest.git"
+                mainrepo="https://github.com/RebellionOS/manifest.git"
                 mainbranch="pie"
                 localManifestBranch="android-9.0"
                 treble_generate="rebellion"
@@ -314,7 +314,7 @@ function get_rom_type() {
                 jack_enabled="false"
                 ;;
             aquarios)
-                mainrepo="ssh://git@github.com/aquarios/manifest.git"
+                mainrepo="https://github.com/aquarios/manifest.git"
                 mainbranch="a9"
                 localManifestBranch="android-9.0"
                 treble_generate="aquarios"
@@ -322,7 +322,7 @@ function get_rom_type() {
                 jack_enabled="false"
                 ;;
             aosmp-pie)
-                mainrepo="ssh://git@gitlab.com/AOSmP/android_manifest.git"
+                mainrepo="https://gitlab.com/AOSmP/android_manifest.git"
                 mainbranch="pie"
                 localManifestBranch="android-9.0"
                 treble_generate="aosmp"
@@ -330,7 +330,7 @@ function get_rom_type() {
                 jack_enabled="false"
                 ;;
 	   graphene10)
-	   	mainrepo="ssh://git@github.com/GrapheneOS/platform_manifest.git"
+	   	mainrepo="https://github.com/GrapheneOS/platform_manifest.git"
 		mainbranch="10"
 		localManifestBranch="android-10.0"
 		treble_generate="graphene"
@@ -427,7 +427,7 @@ function clone_or_checkout() {
             git checkout origin/"$localManifestBranch"
         )
     else
-        git clone ssh://git@github.com/420rom/"$repo" "$dir" -b "$localManifestBranch"
+        git clone https://github.com/420rom/"$repo" "$dir" -b "$localManifestBranch"
     fi
 }
 
@@ -438,8 +438,8 @@ function init_local_manifest() {
 download_patches() {
 	githubMatch=v2..
     jq --help > /dev/null
-	wantedRelease="$(curl --silent ssh://git@api.github.com/repos/phhusson/treble_experimentations/releases |jq -r '.[] | .tag_name' |grep -E "$githubMatch\$" |sort -V | tail -n 1)"
-	wget "ssh://git@github.com/phhusson/treble_experimentations/releases/download/v306/patches.zip" -O patches.zip
+	wantedRelease="$(curl --silent https://api.github.com/repos/phhusson/treble_experimentations/releases |jq -r '.[] | .tag_name' |grep -E "$githubMatch\$" |sort -V | tail -n 1)"
+	wget "https://github.com/phhusson/treble_experimentations/releases/download/v306/patches.zip" -O patches.zip
 	rm -Rf patches
 	unzip patches.zip -d patches
   echo "   ...done Downloading Patches"
@@ -505,7 +505,7 @@ function fix_missings() {
 		sed 's;.*KERNEL_;//&;' -i vendor/*/build/soong/Android.bp 2>/dev/null || true
 		mkdir -p device/sample/etc
 		cd device/sample/etc/
-		curl "ssh://git@android.googlesource.com/device/sample/+/refs/tags/android-9.0.0_r59/etc/apns-full-conf.xml?format=TEXT"| base64 --decode > apns-full-conf.xml
+		curl "https://android.googlesource.com/device/sample/+/refs/tags/android-9.0.0_r59/etc/apns-full-conf.xml?format=TEXT"| base64 --decode > apns-full-conf.xml
 		cd ../../..
 	fi
 	if [[ "$localManifestBranch" == *"10"* ]]; then
@@ -514,11 +514,11 @@ function fix_missings() {
 		sed 's;.*KERNEL_;//&;' -i vendor/*/build/soong/Android.bp 2>/dev/null || true
 		mkdir -p device/sample/etc
 		cd device/sample/etc
-		curl "ssh://git@raw.githubusercontent.com/LineageOS/android_vendor_lineage/lineage-17.1/prebuilt/common/etc/apns-conf.xml" > apns-conf.xml
+		curl "https://raw.githubusercontent.com/LineageOS/android_vendor_lineage/lineage-17.1/prebuilt/common/etc/apns-conf.xml" > apns-conf.xml
 		cd ../../..
 		mkdir -p device/generic/common/nfc
 		cd device/generic/common/nfc
-		curl "ssh://git@android.googlesource.com/device/generic/common/+/refs/tags/android-10.0.0_r40/nfc/libnfc-nci.conf?format=TEXT"| base64 --decode > libnfc-nci.conf
+		curl "https://android.googlesource.com/device/generic/common/+/refs/tags/android-10.0.0_r40/nfc/libnfc-nci.conf?format=TEXT"| base64 --decode > libnfc-nci.conf
 		cd ../../../..
 		sed -i '/Copies the APN/,/include $(BUILD_PREBUILT)/{/include $(BUILD_PREBUILT)/ s/.*/ /; t; d}' vendor/*/prebuilt/common/Android.mk 2>/dev/null || true
 	fi
@@ -528,11 +528,11 @@ function fix_missings() {
 		sed 's;.*KERNEL_;//&;' -i vendor/*/build/soong/Android.bp 2>/dev/null || true
 		mkdir -p device/sample/etc
 		cd device/sample/etc
-		curl "ssh://git@raw.githubusercontent.com/LineageOS/android_vendor_lineage/lineage-18.0/prebuilt/common/etc/apns-conf.xml" > apns-conf.xml
+		curl "https://raw.githubusercontent.com/LineageOS/android_vendor_lineage/lineage-18.0/prebuilt/common/etc/apns-conf.xml" > apns-conf.xml
 		cd ../../..
 		mkdir -p device/generic/common/nfc
 		cd device/generic/common/nfc
-		curl "ssh://git@android.googlesource.com/device/generic/common/+/refs/tags/android-11.0.0_r8/nfc/libnfc-nci.conf?format=TEXT"| base64 --decode > libnfc-nci.conf
+		curl "https://android.googlesource.com/device/generic/common/+/refs/tags/android-11.0.0_r8/nfc/libnfc-nci.conf?format=TEXT"| base64 --decode > libnfc-nci.conf
 		cd ../../../..
 		sed -i '/Copies the APN/,/include $(BUILD_PREBUILT)/{/include $(BUILD_PREBUILT)/ s/.*/ /; t; d}' vendor/*/prebuilt/common/Android.mk 2>/dev/null || true
     fi

@@ -35,19 +35,19 @@ fi
 #We don't want to replace from AOSP since we'll be applying patches by hand
 rm -f .repo/local_manifests/replace.xml
 if [ "$rom" == "lineage15" ];then
-	repo init -u ssh://git@github.com/LineageOS/android.git -b lineage-15.1
+	repo init -u https://github.com/LineageOS/android.git -b lineage-15.1
 elif [ "$rom" == "lineage16" ];then
-	repo init -u ssh://git@github.com/LineageOS/android.git -b lineage-16.0
+	repo init -u https://github.com/LineageOS/android.git -b lineage-16.0
 elif [ "$rom" == "lineage18" ];then
-	repo init -u ssh://git@github.com/LineageOS/android.git -b lineage-18.0
+	repo init -u https://github.com/LineageOS/android.git -b lineage-18.0
 elif [ "$rom" == "420rom-11" ];then
-	repo init -u ssh://git@github.com/420rom/android.git -b 420rom-11
+	repo init -u https://github.com/420rom/android.git -b 420rom-11
 fi
 
 if [ -d .repo/local_manifests ] ;then
 	( cd .repo/local_manifests; git fetch; git checkout origin/420rom-11)
 else
-	git clone ssh://git@github.com/420rom/treble_manifest .repo/local_manifests -b 420rom-11
+	git clone https://github.com/420rom/treble_manifest .repo/local_manifests -b 420rom-11
 fi
 
 file="patches.zip"
@@ -61,7 +61,7 @@ if [ -f $folder ] ; then
 fi
 
 mkdir patches
-wget ssh://git@github.com/phhusson/treble_experimentations/releases/download/v306/patches.zip
+wget https://github.com/phhusson/treble_experimentations/releases/download/v306/patches.zip
 unzip  patches.zip -d patches
 
 #We don't want to replace from AOSP since we'll be applying patches by hand
