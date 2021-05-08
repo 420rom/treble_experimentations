@@ -26,7 +26,7 @@ else
 	if [ -d .repo/local_manifests ] ;then
 		( cd .repo/local_manifests; git fetch; git reset --hard; git checkout origin/$phh)
 	else
-		git clone https://github.com/420rom/treble_manifest .repo/local_manifests -b 420rom-11
+		git clone ssh://git@github.com/420rom/treble_manifest .repo/local_manifests -b 420rom-11
 	fi
 fi
 repo sync -c -j 1 --force-sync
@@ -52,10 +52,10 @@ cp patches.zip release/$rom_fp/patches.zip
 
 if [ "$build_target" == "android-11.0" ];then
     (
-        git clone https://github.com/phhusson/sas-creator
+        git clone ssh://git@github.com/phhusson/sas-creator
         cd sas-creator
 
-        git clone https://github.com/phhusson/vendor_vndk -b android-10.0
+        git clone ssh://git@github.com/phhusson/vendor_vndk -b android-10.0
     )
 
     # ARM64 Gapps {ab, a-only, ab vndk lite}
