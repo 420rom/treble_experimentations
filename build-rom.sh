@@ -61,7 +61,7 @@ if [ -f $folder ] ; then
 fi
 
 mkdir patches
-wget ssh://git@github.com/phhusson/treble_experimentations/releases/download/v307/patches.zip
+wget ssh://git@github.com/phhusson/treble_experimentations/releases/download/v308/patches.zip
 unzip  patches.zip -d patches
 
 #We don't want to replace from AOSP since we'll be applying patches by hand
