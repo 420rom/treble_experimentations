@@ -11,7 +11,7 @@ fi
 export LC_ALL=C
 
 manifest_url="https://android.googlesource.com/platform/manifest"
-aosp="android-11.0.0_r38"
+aosp="android-11.0.0_r39"
 phh="420rom-11"
 
 if [ "$release" == true ];then
